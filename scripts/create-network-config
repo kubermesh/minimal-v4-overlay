@@ -17,7 +17,7 @@ while true; do
     NETDEV_FILE=/tmp/network-units/${INTERFACE_NAME}.netdev
     NETWORK_FILE=/tmp/network-units/${INTERFACE_NAME}.network
     REMOTE_IP=${key##*/}
-    if [ "${REMOTE_IP}" != "${VIP_IP}" ]; then
+    if [ "${IP_ADDRESSES}" != null ] && [ "${REMOTE_IP}" != "${VIP_IP}" ]; then
       cat >${NETDEV_FILE} <<EOF
 [NetDev]
 Name=${INTERFACE_NAME}
