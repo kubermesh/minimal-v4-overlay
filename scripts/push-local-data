@@ -7,7 +7,7 @@ set -o pipefail
 
 while true; do
   source /etc/ip-allocator-opts/dnsmasq-opts.env
-  LOCAL_IPV4=`ip -4 addr show | grep "scope global" | grep inet | awk '{print $2}'`
+  LOCAL_IPV4=`ip -4 addr show | grep "scope global" | grep inet | awk '{print $2}' | sort`
   curl -v http://[fd65:7b9c:569:680:98eb:c508:ea6b:b0b2]:2379/v2/keys/kubermesh.github.io/ipv4-overlay/${VIP_IP} -X PUT -d value="${LOCAL_IPV4}"
   sleep 10
 done
