@@ -1,5 +1,5 @@
 FROM alpine:3.5
 
-RUN apk add --no-cache curl jq util-linux
+RUN apk add --no-cache curl ipcalc jq util-linux
 
 COPY scripts/* /usr/local/bin/
