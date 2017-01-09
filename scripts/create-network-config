@@ -60,6 +60,13 @@ EOF
     fi
   done
   DIFFERENCES=false
+  # Remove old files
+  for f in `find /target/ -type f -name 'v4t*'`; do
+    if [ ! -f /tmp/network-units/${f##*/} ]; then
+      rm $f
+    fi
+  done
+  # Check for updates
   for f in `find /tmp/network-units/ -type f`; do
     if ! diff -rq $f /target/${f##*/}; then
       # File is different
