@@ -55,7 +55,10 @@ IPForward=ipv4
 EOF
       for ip in ${IP_ADDRESSES}; do
         echo '[Route]' >>${NETWORK_FILE}
-        echo "Destination=`ipcalc ${ip} | grep Network | awk '{print $2}'`" >>${NETWORK_FILE}
+        if [ "${ip##*/}" != 32 ]; then
+          ip=`ipcalc ${ip} | grep Network | awk '{print $2}'`
+        fi
+        echo "Destination=${ip}" >>${NETWORK_FILE}
       done
     fi
   done
